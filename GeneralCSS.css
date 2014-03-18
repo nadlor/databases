@@ -1,0 +1,31 @@
+
+/* possible fonts
+
+	rockwell
+	impact
+	myriad pro
+
+ */
+h1 {
+	font-family: Rockwell, Myriad Pro, impact;
+	font-size: 2em;
+	
+	
+}
+
+/* possible fonts: 
+	verdana
+	century gothic
+	franklin gothic book
+ */
+h2{
+	font-family: verdana, franklin gothic book, century gothic;
+	font-size: 16Px;
+	font-size:small;
+}
+
+fieldset{
+	vertical-align: middle;
+}
+
+
