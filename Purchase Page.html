@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head><style type="text/css"></style>
+
+
+<!-- Change link of generalcss.css once on server -->
+<link href="C:\Users\hector\documents\github\databases\generalcss.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">html {
+  background-image:  url(UCF.jpg) no-repeat center center fixed;
+  background-size: cover;
+}</style></head>
+
+
+
+
+<body>
+<!-- change directory for orders when ready -->
+<form action="C:.../PerformQuery.php" method="post">
+<fieldset>
+	<legend><h1>Purchase form</h1></legend>
+	<h3>
+	<label>Requester First Name:<input name="fname" type="text"> 	</label> 	<br>
+	<label>Requester Last Name:<input name="lName" type="text"> 	</label> 	<br>
+	<label>Requester Email (must include @ucf.edu):<input name="email" type="email">	</label>	<br>
+	<label>Account Number:<input name="aNum" type="text"></label> <br>
+	<label>Check if order is urgent <input name="urgentChB" type="checkbox"> </label> <br>
+	<label>Check if item is a computer/laptop <input name="cpuChB" type="checkbox"> </label> <br>
+	<label>Vendor:<input name="vendor" type="text"></label> <br>
+	<label>Please describe the item and include quantities below<br> <textarea name="iDesc" rows="8" cols="30"></textarea> </label> <br>
+	<label>Total Purchase amount: <input name="cost" type="text"> </label> <br>
+	<label>Upload files:<input name="file /> <input type=" type="file" value="upload" submit"=""> </label><br>
+	</h3>
+</fieldset>
+<br>
+
+        <!--?php
+          require_once('recaptchalib.php');
+          $publickey = "6LdHoPASAAAAAE64TOhSOo5YuIkfZiTXYdc8NGly"; // you got this from the signup page
+          echo recaptcha_get_html($publickey);
+        ?-->
+        <input type="submit" value="Submit Query">
+      </form>
+
+<input name="submit" type="submit" value="Submit order">
+
+<script>/* Write JavaScript here */</script></body>
