@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-<head><link href="C:\Users\Hector\Documents\GitHub\databases\GeneralCSS.css" type="text\css" rel="stylesheet" />
+<head>
+<!-- Change css directory when on server -->
+<link href="C:\Users\Hector\Documents\GitHub\databases\GeneralCSS.css" type="text\css" rel="stylesheet" />
 </head>
 
+<style type="text/css">html {
+  background-image:  url(UCF.jpg) no-repeat center center fixed;
+  background-size: cover;
+}</style>
 
-<body>
+<body class="purchasePage">
 
 <h1><p><center>Purchases Main</center></p></h1>
 
-<h2>This interface is to be used by any faculty/staff member in EECS to request a purchase of one or more items.
-	if you are requesting orders from more than one vendor, the form should be submitted separately for each vendor.</h2>
+<h2><p class="purchaseInstruction">This interface is to be used by any faculty/staff member in EECS to request a purchase of one or more items.<br/>
+	If you are requesting orders from more than one vendor, the form should be submitted separately for each vendor.</p></h2>
 
 
 <!-- change directory for orders when ready -->
 <form action="C:.../orders.php" method="post">
 <fieldset>
-	<legend><h2>Purchase form</h2></legend>
-	<label><h3>Requester First Name:<input type="text" name="fname" /></h3> 	</label> 	<br />
+	<legend><h2 class="purchaseHeading">Purchase form</h2></legend>
+	<h3>
+	<label>Requester First Name:<input type="text" name="fname" />	</label> 	<br />
 	<label>Requester Last Name:<input name="lName" type="text" /> 	</label> 	<br />
 	<label>Requester Email (must include @ucf.edu):<input name="email" type="email" />	</label>	<br />
 	<label>Account Number: <input name="aNum" type="text"/> </label> <br />
@@ -27,7 +34,7 @@
 	<label>Please describe the item and include quantities below <textarea name="iDesc"></textarea> </label> <br />
 	<label>Total Purchase amount: <input name="cost" type="text"/> </label> <br />
 	<label>Upload files:<input type="file" name="file /> <input type="submit" value="upload"/> </label><br />
-	<!-- input type="submit" name="submit" value="Submit order" /-->
+	</h3>
 </fieldset>
 <br />
 <input type="submit" name="submit" value="Submit order" />
