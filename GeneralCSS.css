@@ -18,18 +18,21 @@ h1 {
 	century gothic
 	franklin gothic book
  */
-h2{
-	font-family: Times New Roman;
+h2 {
+	font-family: verdana, century gothic, franklin gothic book;
 	font-size: 16Px;
 }
 
-h3{
-	font-family: Times New Roman;
+h3 {
+	font-family: verdana, century gothic, franklin gothic book;
 	font-size: 12Px;
+}
+
+label { 
+	vertical-align: middle;
 }
 
 fieldset{
 	vertical-align: middle;
+	width: 500Px;
 }
-
-

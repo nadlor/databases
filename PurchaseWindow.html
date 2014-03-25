@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css"></style>
+<head>
+<!-- Change link of generalcss.css once on server -->
+<link href="C:\Users\hector\documents\github\databases\generalcss.css" type="text/css" rel="stylesheet" />
+
+</head>
 
 <style type="text/css">html {
   background-image:  url(UCF.jpg) no-repeat center center fixed;
@@ -9,24 +13,24 @@
 
 
 </head><body>
-
 <!-- change directory for orders when ready -->
 <form action="C:.../PerformQuery.php" method="post">
 <fieldset>
-  <legend><h1>Purchase form</h1></legend>
-  <label><h3>Requester First Name:</h3><input name="fname" type="text"> 	</label> 	<br>
-  <label><h3>Requester Last Name:</h3><input name="lName" type="text"> 	</label> 	<br>
-  <label><h3>Requester Email (must include @ucf.edu):</h3><input name="email" type="email">	</label>	<br>
-  <label><h3>Account Number:<h3><input name="aNum" type="text">  <br>
-	<label><h3>Check if order is urgent</h3> <input name="urgentChB" type="checkbox"> </label> <br>
-	<label><h3>Check if item is a computer/laptop</h3> <input name="cpuChB" type="checkbox"> </label> <br>
-	<label><h3>Vendor: </h3><input name="vendor" type="text"></label> <br>
-	<label><h3>Please describe the item and include quantities below</h3> <textarea name="iDesc" rows="8" cols="30"></textarea> </label> <br>
-	<label><h3>Total Purchase amount:</h3> <input name="cost" type="text"> </label> <br>
-	<label><h3>Upload files:</h3><input name="file /> <input type=" type="file" value="upload" submit"=""> </label><br>
-	<!-- input type="submit" name="submit" value="Submit order" /-->
-</h3></label></fieldset>
-<br>
+	<legend><h1>Purchase form</h1></legend>
+	<h3>
+	<label>Requester First Name:<input name="fname" type="text"> 	</label> 	<br/>
+	<label>Requester Last Name:<input name="lName" type="text"> 	</label> 	<br/>
+	<label>Requester Email (must include @ucf.edu):<input name="email" type="email">	</label>	<br/>
+	<label>Account Number:<input name="aNum" type="text"></label> <br/>
+	<label>Check if order is urgent <input name="urgentChB" type="checkbox"> </label> <br/>
+	<label>Check if item is a computer/laptop <input name="cpuChB" type="checkbox"> </label> <br/>
+	<label>Vendor:<input name="vendor" type="text"></label> <br/>
+	<label>Please describe the item and include quantities below<br/> <textarea name="iDesc" rows="8" cols="30"></textarea> </label> <br/>
+	<label>Total Purchase amount: <input name="cost" type="text"> </label> <br/>
+	<label>Upload files:<input name="file /> <input type=" type="file" value="upload" submit"=""> </label><br/>
+	</h3>
+</fieldset>
+<br/>
 <input name="submit" type="submit" value="Submit order">
 </form>
 
