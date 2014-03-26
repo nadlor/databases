@@ -35,11 +35,11 @@ h3 {
 fieldset, .purchaseBoxes{
 	vertical-align: middle;
 	width: 500Px;
-	background-color: white;
+	background-color: WHITE;
 	border-radius: 10px;
 	border: 2px solid #000000;
-	padding: 10px;
-	opacity: .90;
+	padding: 8px;
+	opacity: .85;
 	line-height: 25px;
 }
 
@@ -50,12 +50,13 @@ width: 1000px;
 #extraMain{
 margin-left: auto;
 margin-right: auto;
+background-color: #FFD700;
 }
 
 legend{
-background-color: white;
+background-color: #FFD700;
 border: 2Px solid #000000;
-border-radius: 10px;
+border-radius: 10px;	
 }
 
 body.purchasePage{
@@ -63,4 +64,5 @@ body.purchasePage{
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-attachment: fixed;
+	background-size: cover;
 }
