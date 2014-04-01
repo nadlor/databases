@@ -1,6 +1,7 @@
 <?php
 	//must be included on the top of each page
 	session_start();
+	$output = null;
 	
 	//get email
 	$email = $_POST["email"];
@@ -19,10 +20,10 @@
 						
 		//update the database with the new password
 		$CMD = sprintf("Java -jar c:\PerformQuery.jar %s %s %s", "ForgotPassword", $dbEmail, $newPW);
-		exec($CMD);
+		exec($CMD, $output);
 		
-		//CHECK THE DATABASE TO MAKE SURE THE PASSWORD WAS UPDATED
-		if()
+		//output[0] should equal 1 if the password was successfully changed
+		if($output != null && output[0] != null && output[0] == 1)
 		{
 			//email user new password
 			//Who the email is coming from

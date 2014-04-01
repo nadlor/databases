@@ -9,7 +9,7 @@ $role = strval($roleValue);
 //Displays drop down list for associated roles. Different roles get different querry options.  AccountSettings.html will have the change password form.
 
 //ADD USERS BUTTON MUST BE ADDED FOR ADMIN, NOT YET IN HTML CODE.  THIS CAN BRING UP THE SAME PAGE AS THE EDIT BUTTON BUT MUST ALLOW FOR THE EDITTING OF THE USERNAME AND PASSWORD
-if(role == 3){
+if($role == 3){
 echo '<!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@ echo '<!DOCTYPE html>
 </html>';
 }
 
-else if(role == 2){
+else if($role == 2){
 echo '<!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +87,7 @@ echo '<!DOCTYPE html>
 </body>
 </html>';
 }
-if(role == 1)
+if($role == 1)
 {
 echo '<!DOCTYPE html>
 <html>
