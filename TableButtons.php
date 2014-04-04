@@ -1,11 +1,11 @@
 <?php
 //Must be at the top of all html pages
 //session_start();
-$queryData = array('0'=>array('Aaron','asandow@knights.ucf.edu','Y','Microsoft','This is a computer','www.google.com','$300'),
+//$queryData = array('0'=>array('Aaron','asandow@knights.ucf.edu','Y','Microsoft','This is a computer','www.google.com','$300'),
 
-          '1'=>array('Michael','asandow@bellsouth.net','Y','Apple','This is not a computer','www.yahoo.com','30'));
-//$queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
-//  				  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
+ //         '1'=>array('Michael','asandow@bellsouth.net','Y','Apple','This is not a computer','www.yahoo.com','30'));
+$queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
+  				  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
 
 //retrieve the query from the database
 //$query = $_SESSION["query"];
@@ -60,12 +60,9 @@ if(strcmp($query, "ViewUsers")==0)
 				//This could be wrong, but im trying to return the row in the array
 				//that we want to edit, then we can open the new page with the information
 				//in the array
-				echo '<form method="post" action="EditUser.php">';
-				echo '<input type="submit" name = "$i" value="edit"/>';
-				echo '</form>';
-				echo '<form method="post" action="VerifyRemove.js">';
-				echo '<input type="submit" name = "$i" value="Remove"/>';
-				echo '</form>';
+				echo '<a href="EditUser.php row=$i">Edit User</a>';
+				echo '<br/><br/>';
+				echo '<a href="VerifyRemove.js">Remove User</a>';
 				echo '</td>';
 			}
 		}
