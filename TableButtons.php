@@ -96,16 +96,14 @@ else
 	echo '<table>';
 	echo '<tr>';
 	//Displays table headings
-	echo'<form method = "post" action = "sort.php">';
-	echo '<th><Input type="Submit" name="btn0" value="Requester"></Input></th>';
-	echo '<th><Input type="Submit" name="btn1" value="Requesters email"></Input></th>';
-	echo '<th><Input type="Submit" name="btn2" value="Urgent"></Input></th>';
-	echo '<th><Input type="Submit" name="btn4" value="Vendor"></Input></th>';
-	echo '<th><Input type="Submit" name="btn5" value="Description"></Input></th>';
-	echo '<th><Input type="Submit" name="btn6" value="Attachments"></Input></th>';
-	echo '<th><Input type="Submit" name="btn7" value="Purchase Amount"></Input></th>';
+	echo '<th><a href="sort.php col=0">Requester</a></th>';
+	echo '<th><a href="sort.php col=1">Requesters email</a></th>';
+	echo '<th><a href="sort.php col=2">Urgent</a></th>';
+	echo '<th><a href="sort.php col=3">Vendor</a></th>';
+	echo '<th><a href="sort.php col=4">Description</a></th>';
+	echo '<th><a href="sort.php col=5">Attachments</a></th>';
+	echo '<th><a href="sort.php col=6">Purchase Amount</a></th>';
 	echo '<th>Cancel Order</th>';
-	echo'</form>';
 	echo '</tr>';
 	echo '</form>';
 	//Displays the data
