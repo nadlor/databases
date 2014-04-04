@@ -1,9 +1,9 @@
 <?php
 //Must be at the top of all html pages
 //session_start();
-//$queryData = array('0'=>array('Aaron','asandow@knights.ucf.edu','Y','Microsoft','This is a computer','www.google.com','$300'),
+//$queryData = array(	'0'=>array('Aaron','asandow@knights.ucf.edu','1051365890','Yes','no','Microsoft','This is a computer','$300','www.google.com'),
+//					'1'=>array('Michael','asandow@bellsouth.net','8945870365','Yes','yes','Apple','This is not a computer','30','www.yahoo.com'));
 
- //         '1'=>array('Michael','asandow@bellsouth.net','Y','Apple','This is not a computer','www.yahoo.com','30'));
 $queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
   				  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
 
@@ -95,11 +95,13 @@ else
 	//Displays table headings
 	echo '<th><a href="sort.php col=0">Requester</a></th>';
 	echo '<th><a href="sort.php col=1">Requesters email</a></th>';
-	echo '<th><a href="sort.php col=2">Urgent</a></th>';
-	echo '<th><a href="sort.php col=3">Vendor</a></th>';
-	echo '<th><a href="sort.php col=4">Description</a></th>';
-	echo '<th><a href="sort.php col=5">Attachments</a></th>';
-	echo '<th><a href="sort.php col=6">Purchase Amount</a></th>';
+	echo '<th><a href="sort.php col=2">Account Number</a></th>';
+	echo '<th><a href="sort.php col=3">Urgent</a></th>';
+	echo '<th><a href="sort.php col=4">Computer Purchase</a></th>';
+	echo '<th><a href="sort.php col=5">Vendor</a></th>';
+	echo '<th><a href="sort.php col=6">Description</a></th>';
+	echo '<th><a href="sort.php col=7">Purchase Amount</a></th>';
+	echo '<th><a href="sort.php col=8">Attachments</a></th>';
 	echo '<th>Cancel Order</th>';
 	echo '</tr>';
 	echo '</form>';
@@ -107,12 +109,12 @@ else
 	for($i=0; $i<$numrows; $i++)
 	{
 		echo '<tr>';
-		for($j=0; $j<7; $j++)
+		for($j=0; $j<9; $j++)
 		{
 			echo '<td>';
 			echo $queryData[$i][$j];
 			echo '</td>';
-  		if($j==6)
+  		if($j==7)
   		{
   			//Adds buttons to end of each row to cancel an order
   			echo '<td>';
