@@ -5,13 +5,13 @@ $queryData = array('0'=>array('Aaron','asandow@knights.ucf.edu','Y','Microsoft',
 
           '1'=>array('Michael','asandow@bellsouth.net','Y','Apple','This is not a computer','www.yahoo.com','30'));
 //$queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
-//					  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
+//  				  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
 
 //retrieve the query from the database
 //$query = $_SESSION["query"];
 
 //if query is verify users
-$query="Views";
+$query="ViewUsers";
 if(strcmp($query, "ViewUsers")==0)
 {
 	//retrieves array from database that holds all the data
@@ -21,7 +21,7 @@ if(strcmp($query, "ViewUsers")==0)
 	
 	//style page for table
 	echo '<style type = "text/css">';
-	echo 'th, td{padding:20px;}';
+	echo 'th, td{padding:20px;}';	
 	echo 'table, th, td{border:2px solid red;}';
 	echo '</style>';
 	
@@ -56,8 +56,16 @@ if(strcmp($query, "ViewUsers")==0)
 								//After information is changed, a submit button must send the the new information to PerformQuery.php
 				//Remove Button- Must have pop up that verifies user can be deleted. If so, call PerformQuery.php and call the RemoveUser procedure
 				echo '<td>';
-				echo '<button type="button" name = "col" onclick="EditUser.php" method = "post" value="0">Edit</button>';
-				echo '<button type="button" name = "col" onclick="VerifyRemove.js" method = "post" value="1">Remove</button>';
+				//changed from <buttton to <input to better manage the information
+				//This could be wrong, but im trying to return the row in the array
+				//that we want to edit, then we can open the new page with the information
+				//in the array
+				echo '<form method="post" action="EditUser.php">';
+				echo '<input type="submit" name = "$i" value="edit"/>';
+				echo '</form>';
+				echo '<form method="post" action="VerifyRemove.js">';
+				echo '<input type="submit" name = "$i" value="Remove"/>';
+				echo '</form>';
 				echo '</td>';
 			}
 		}
