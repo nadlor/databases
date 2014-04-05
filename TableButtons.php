@@ -51,16 +51,17 @@ if(strcmp($query, "ViewUsers")==0)
 			if($j==5)
 			{
 				//HECTOR!!!!!!!!!
-				//Adds buttons to end of each row
 				//Edit button- copies user information into textboxes (except for userid and username which can be displayed but cannot be changed)
-								//After information is changed, a submit button must send the the new information to PerformQuery.php
+				//After information is changed, a submit button must send the the new information to PerformQuery.php
 				//Remove Button- Must have pop up that verifies user can be deleted. If so, call PerformQuery.php and call the RemoveUser procedure
 				echo '<td>';
 				//changed from <buttton to <input to better manage the information
 				//This could be wrong, but im trying to return the row in the array
 				//that we want to edit, then we can open the new page with the information
 				//in the array
-				echo '<a href="EditUser.php row=$i">Edit User</a>';
+				echo '<a href="EditUser.php row="';
+				echo $i;
+				echo '">Edit User</a>';
 				echo '<br/><br/>';
 				echo '<a href="VerifyRemove.js">Remove User</a>';
 				echo '</td>';
@@ -92,42 +93,98 @@ else
 	
 	echo '<table>';
 	echo '<tr>';
-	//Displays table headings
-	echo '<th><a href="sort.php col=0">Requester</a></th>';
-	echo '<th><a href="sort.php col=1">Requesters email</a></th>';
-	echo '<th><a href="sort.php col=2">Account Number</a></th>';
-	echo '<th><a href="sort.php col=3">Urgent</a></th>';
-	echo '<th><a href="sort.php col=4">Computer Purchase</a></th>';
-	echo '<th><a href="sort.php col=5">Vendor</a></th>';
-	echo '<th><a href="sort.php col=6">Description</a></th>';
-	echo '<th><a href="sort.php col=7">Purchase Amount</a></th>';
-	echo '<th><a href="sort.php col=8">Attachments</a></th>';
-	echo '<th>Cancel Order</th>';
-	echo '</tr>';
-	echo '</form>';
-	//Displays the data
-	for($i=0; $i<$numrows; $i++)
+	
+	//Purchaser “order list” will contain the requestor, requestor’s email address, 
+	//whether the purchase is urgent, vendor, item description, link to any 
+	//attachments, and purchase amount (price).
+	if($role == 1)
 	{
-		echo '<tr>';
-		for($j=0; $j<9; $j++)
-		{
-			echo '<td>';
-			echo $queryData[$i][$j];
-			echo '</td>';
-  		if($j==7)
-  		{
-  			//Adds buttons to end of each row to cancel an order
-  			echo '<td>';
-  			echo '<button type="button" name = "RemoveOrder" onclick="PerformQuery.php" method = "post" value="RemoveOrder">RemoveOrder</button>';
-  			echo '</td>';
-  		}
-		}
+		//Displays table headings
+		echo '<th><a href="sort.php col=0">Requester</a></th>';
+		echo '<th><a href="sort.php col=1">Requesters email</a></th>';
+		echo '<th><a href="sort.php col=2">Urgent</a></th>';
+		echo '<th><a href="sort.php col=3">Vendor</a></th>';
+		echo '<th><a href="sort.php col=4">Description</a></th>';
+		echo '<th><a href="sort.php col=5">Attachments</a></th>';
+		echo '<th><a href="sort.php col=6">Purchase Amount</a></th>';
+		echo '<th>Cancel Order</th>';
 		echo '</tr>';
+		echo '</form>';
+		//Displays the data
+		for($i=0; $i<$numrows; $i++)
+		{
+			echo '<tr>';
+			for($j=0; $j<7; $j++)
+			{
+				echo '<td>';
+				echo $queryData[$i][$j];
+				echo '</td>';
+				if($j==6)
+				{
+					echo '<td>';
+					$query = RemoveOrder;
+					echo '<a href="EditOrder.php row = '.$i.' role = '.$role.'">Edit</a>';
+					echo '<br/><br/>';
+					echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
+					echo '</td>';
+				}
+			}
+		}
 	}
+	
+	//Accountant and Admin order list
+	if($role == 2 || $role == 3)
+	{
+		//Displays table headings
+		echo '<th><a href="sort.php col=0">Requester</a></th>';
+		echo '<th><a href="sort.php col=1">Requesters email</a></th>';
+		echo '<th><a href="sort.php col=2">Account Number</a></th>';
+		echo '<th><a href="sort.php col=3">Urgent</a></th>';
+		echo '<th><a href="sort.php col=4">Computer</a></th>';
+		echo '<th><a href="sort.php col=5">Vendor</a></th>';
+		echo '<th><a href="sort.php col=6">Description</a></th>';
+		echo '<th><a href="sort.php col=8">Purchase Amount</a></th>';
+		echo '<th><a href="sort.php col=7">Attachments</a></th>';
+		echo '<th>Cancel Order</th>';
+		echo '</tr>';
+		echo '</form>';
+		//Displays the data
+		for($i=0; $i<$numrows; $i++)
+		{
+			echo '<tr>';
+			for($j=0; $j<9; $j++)
+			{
+				echo '<td>';
+				echo $queryData[$i][$j];
+				echo '</td>';
+				if($j==8)
+				{
+					//CODE MUST BE ADDED HERE TO COPY DATA INTO EXCEL
+					echo '<td>';
+					$query=RemoveOrder;
+					echo '<a href="EditOrder.php row = '.$i.' role = '.$role.'">Edit</a>';
+					echo '<br/><br/>';
+					echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
+					if($role==3)
+					{
+						echo '<br/><br/>';
+						echo '<a href="PurchaseMain.html">Add New Order</a>';
+					}
+					if($role==2)
+					{
+						echo '<br/><br/>';
+						echo '<a href="ApproveOrder.php">Approve Order</a>';
+					}
+						echo '</td>';
+				}
+			}
+		}
+	}
+	echo '</tr>';
 
 	echo '</table>';
 	
-	//CODE MUST BE ADDED HERE TO COPY DATA INTO EXCEL
+
 	
 	
 	//Depending on role, different queries are available to different roles.  Query is submitted to PerformQuery.php
