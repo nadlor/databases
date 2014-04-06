@@ -1,17 +1,17 @@
 <?php
 //Must be at the top of all html pages
 //session_start();
-//$queryData = array(	'0'=>array('Aaron','asandow@knights.ucf.edu','1051365890','Yes','no','Microsoft','This is a computer','$300','www.google.com'),
-//					'1'=>array('Michael','asandow@bellsouth.net','8945870365','Yes','yes','Apple','This is not a computer','30','www.yahoo.com'));
+$queryData = array('0'=>array('Aaron','asandow@knights.ucf.edu','Y','Microsoft','This is a computer','www.google.com','$300','test1','test2','test'),
 
-$queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
-  				  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
+          '1'=>array('Michael','asandow@bellsouth.net','Y','Apple','This is not a computer','www.yahoo.com','30','test1','test2','test'));
+//$queryData = array('0'=>array('A289347','Asandow','Aaron','Sandow','asandow@knights.ucf.edu','Purchaser'),
+//        	  '1'=>array('B383743','Psandow','Adam','Sandow','adkadja@knights.ucf.edu','Accountant'));
 
 //retrieve the query from the database
 //$query = $_SESSION["query"];
 
 //if query is verify users
-$query="ViewUsers";
+$query="VieUsers";
 if(strcmp($query, "ViewUsers")==0)
 {
 	//retrieves array from database that holds all the data
@@ -51,8 +51,9 @@ if(strcmp($query, "ViewUsers")==0)
 			if($j==5)
 			{
 				//HECTOR!!!!!!!!!
+				//Adds buttons to end of each row
 				//Edit button- copies user information into textboxes (except for userid and username which can be displayed but cannot be changed)
-				//After information is changed, a submit button must send the the new information to PerformQuery.php
+								//After information is changed, a submit button must send the the new information to PerformQuery.php
 				//Remove Button- Must have pop up that verifies user can be deleted. If so, call PerformQuery.php and call the RemoveUser procedure
 				echo '<td>';
 				//changed from <buttton to <input to better manage the information
@@ -63,7 +64,7 @@ if(strcmp($query, "ViewUsers")==0)
 				echo $i;
 				echo '">Edit User</a>';
 				echo '<br/><br/>';
-				echo '<a href="VerifyRemove.js">Remove User</a>';
+				echo '<button onclick="confirmDelete('.$queryData[$i][0].')">Remove</button>';
 				echo '</td>';
 			}
 		}
@@ -125,7 +126,8 @@ else
 					$query = RemoveOrder;
 					echo '<a href="EditOrder.php row = '.$i.' role = '.$role.'">Edit</a>';
 					echo '<br/><br/>';
-					echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
+					//echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
+					echo '<button onclick="confirmDelete('.$queryData[$i][0].')">Remove</button>';
 					echo '</td>';
 				}
 			}
@@ -136,23 +138,34 @@ else
 	if($role == 2 || $role == 3)
 	{
 		//Displays table headings
-		echo '<th><a href="sort.php col=0">Requester</a></th>';
-		echo '<th><a href="sort.php col=1">Requesters email</a></th>';
-		echo '<th><a href="sort.php col=2">Account Number</a></th>';
-		echo '<th><a href="sort.php col=3">Urgent</a></th>';
-		echo '<th><a href="sort.php col=4">Computer</a></th>';
-		echo '<th><a href="sort.php col=5">Vendor</a></th>';
-		echo '<th><a href="sort.php col=6">Description</a></th>';
-		echo '<th><a href="sort.php col=8">Purchase Amount</a></th>';
-		echo '<th><a href="sort.php col=7">Attachments</a></th>';
+		echo '<th><a href="sort.php col=0">OrderId</a></th>';
+		echo '<th><a href="sort.php col=1">OrderReqDate</a></th>';
+		echo '<th><a href="sort.php col=2">PurchaseDate</a></th>';
+		echo '<th><a href="sort.php col=3">ApprovalDate</a></th>';
+		echo '<th><a href="sort.php col=4">ReceiveDate</a></th>';
+		echo '<th><a href="sort.php col=5">AcctNumber</a></th>';
+		echo '<th><a href="sort.php col=6">Urgent</a></th>';
+		echo '<th><a href="sort.php col=7">CompPurchase</a></th>';
+		echo '<th><a href="sort.php col=8">Vendor</a></th>';
+		echo '<th><a href="sort.php col=9">ItemDesc</a></th>';
+		echo '<th><a href="sort.php col=10">PreOrderNotes</a></th>';
+		echo '<th><a href="sort.php col=11">Attachment</a></th>';
+		echo '<th><a href="sort.php col=12">Requestor</a></th>';
+		echo '<th><a href="sort.php col=13">ReqEmail</a></th>';
+		echo '<th><a href="sort.php col=14">Amount</a></th>';
+		echo '<th><a href="sort.php col=15">AcctCode</a></th>';
+		echo '<th><a href="sort.php col=16">PONumber</a></th>';
+		echo '<th><a href="sort.php col=17">PostOrderNotes</a></th>';
 		echo '<th>Cancel Order</th>';
 		echo '</tr>';
 		echo '</form>';
+		$orderId = $queryData[$i][0];
+		$isComputer=$queryData[$i][7];
 		//Displays the data
 		for($i=0; $i<$numrows; $i++)
 		{
 			echo '<tr>';
-			for($j=0; $j<9; $j++)
+			for($j=0; $j<17; $j++)
 			{
 				echo '<td>';
 				echo $queryData[$i][$j];
@@ -164,7 +177,8 @@ else
 					$query=RemoveOrder;
 					echo '<a href="EditOrder.php row = '.$i.' role = '.$role.'">Edit</a>';
 					echo '<br/><br/>';
-					echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
+					echo '<button onclick="confirmDelete('.$queryData[$i][0].')">Remove</button>';
+					//echo '<a href="PerformQuery.php query='.$query.' ">Remove</a>';
 					if($role==3)
 					{
 						echo '<br/><br/>';
@@ -173,7 +187,7 @@ else
 					if($role==2)
 					{
 						echo '<br/><br/>';
-						echo '<a href="ApproveOrder.php">Approve Order</a>';
+						echo '<a href="ApproveOrder.php comp='.$isComputer.' oId='.$orderId.'">Approve Order</a>';
 					}
 						echo '</td>';
 				}
@@ -195,7 +209,6 @@ else
 		<br/><br/>
 		<form method="post"action="PerformQuery.php">
 	<select>
-	   <option value="AddOrder">AddOrder</option>
 	   <option value="AwaitingApproval">Awaiting Approval</option>
 	   <option value="FindOrderByEmail">Find Order By Email</option>
 	   <option value="OrdersByDateRange">Orders By Date Range</option>
@@ -225,7 +238,6 @@ else
 	  <br/><br/>
 	  <form method="post"action="PerformQuery.php">
 	<select>
-	   <option value="AddOrder">AddOrder</option>
 	   <option value="AwaitingApproval">Awaiting Approval</option>
 	   <option value="FindOrderByEmail">Find Order By Email</option>
 	   <option value="OrdersByDateRange">Orders By Date Range</option>
@@ -254,7 +266,6 @@ else
 	  <br/><br/>
 	  <form method="post"action="PerformQuery.php">
 	<select>
-	   <option value="AddOrder">AddOrder</option>
 	   <option value="AwaitingApproval">Awaiting Approval</option>
 	   <option value="FindOrderByEmail">Find Order By Email</option>
 	   <option value="OrdersByDateRange">Orders By Date Range</option>
@@ -273,6 +284,19 @@ else
 	 </form>';
 	}
 
+	//we need to change what location is called and info being sent to.
+	echo '
+	<script>
+	function confirmDelete(orderId){
+	var answer = confirm("Are you sure you want to remove this order?");
+	if(r==true){
+		window.location.href="/path/PerformQuery.php?Orderid=orderId";
+	}
+	else{}
+	}
+	</script>';
+	
+	
 	echo '</html>';
 }
 ?>
